@@ -26,10 +26,13 @@ int main()
     {
         std::getline(std::cin, input);
         try {
-            if (input == "exit")
+            if (input == "q")
             {
                 sensor->stop();
                 controller->stop();
+                sensorThread.join();
+                controllerThread.join();
+                return 0;
             }
             int setPoint = std::stoi(input);
             controller->setSetPoint(setPoint);
